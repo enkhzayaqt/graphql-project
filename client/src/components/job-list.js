@@ -1,6 +1,6 @@
-export default function JobList(){
-    return <ul>
-        <li>Software engineer</li>
-        <li>fullstack engineer</li>
+import JobItem from "./job-item"
+export default function JobList({jobs}){
+    return <ul className="box">
+        {jobs.map(job=><JobItem job={job}/>)}
     </ul>
 }
