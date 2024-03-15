@@ -9,7 +9,7 @@ function App() {
   const [loggedUser, setLoggedUser] = useState(null);
   return (
     <>
-    <NavBar loggedUser={loggedUser}/>
+    <NavBar loggedUser={loggedUser} setLoggedUser={setLoggedUser}/>
     <main className="section">
       <Routes>
       <Route index path="/" element={<HomePage/>}/>
