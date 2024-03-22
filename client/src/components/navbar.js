@@ -6,6 +6,7 @@ export default function NavBar({loggedUser, setLoggedUser}){
 
     const handleLogout = () => {
         setLoggedUser(null);
+        localStorage.removeItem("job_app_token")
         navigate('/')
     }
     return (

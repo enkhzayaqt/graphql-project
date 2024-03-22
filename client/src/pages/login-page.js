@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { login } from "../lib/authorization";
 
 export default function LoginPage({setLoggedUser}){
     const [email, setEmail] = useState("emma@gmail.com");
@@ -7,13 +8,10 @@ export default function LoginPage({setLoggedUser}){
     const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // const user = await LoginPage(email, password);
-        const mockUser = {
-            id: "jshgsdklsa",
-            email: "emma@gmail.com"
-        }
-        if(mockUser){
-            setLoggedUser(mockUser)
+
+        const user = await login(email, password)
+        if(user){
+            setLoggedUser(user)
             navigate("/")
         }
     }
