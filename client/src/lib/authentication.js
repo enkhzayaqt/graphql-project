@@ -1,4 +1,4 @@
-const { default: jwt_decode } = require("jwt-decode");
+import {jwtDecode} from 'jwt-decode';
 const API_URL = "http://localhost:9000"
 
 export async function login(email, password){
@@ -13,9 +13,9 @@ export async function login(email, password){
     }
 
     const {token} = await response.json(); 
-
     localStorage.setItem('job_app_token', token)
-    const data = jwt_decode(token)
+    const data = jwtDecode(token)
+
     return {
         id: data.id,
         email: data.email

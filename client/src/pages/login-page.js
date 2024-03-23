@@ -1,16 +1,21 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { login } from "../lib/authorization";
+import { login } from "../lib/authentication";
 
 export default function LoginPage({setLoggedUser}){
     const [email, setEmail] = useState("emma@gmail.com");
     const [password, setPassword] = useState("1234");
+    // const [error, setError] = useState(false);
+
     const navigate = useNavigate();
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const user = await login(email, password)
+        const user = await login(email, password);
+
         if(user){
+            // setError(false)
             setLoggedUser(user)
             navigate("/")
         }
