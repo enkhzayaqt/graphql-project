@@ -4,11 +4,7 @@ import { handleLogin } from "./authentication.js";
 import knex from "./lib/db.js";
 
 
-await knex.schema.createTable('users', function (table) {
-    table.increments();
-    table.string('name');
-    table.timestamps();
-  });
+const { schema } = knex
 
 const PORT = 9000;
 
