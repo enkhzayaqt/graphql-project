@@ -1,4 +1,4 @@
-import {getUserByEmail} from "./controllers/user"
+import {getUserByEmail} from "./controllers/user.js"
 import jwt from 'jsonwebtoken'
 
 const secret = 'sdfgakjgsfpoqhguovsdgdvkj74972halhf'
