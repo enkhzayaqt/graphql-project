@@ -4,8 +4,8 @@ import express from "express";
 import cors from "cors";
 import { handleLogin } from "./authentication.js";
 import knex from "./lib/db.js";
-
-
+import { readFile } from "fs";
+import { resolvers } from "./resolvers.js";
 
 
 const { schema } = knex
@@ -18,6 +18,8 @@ app.use(cors({
 }), express.json());
 
 app.post('/login', handleLogin);
+
+const typeDefs = await readFile('./schema.graphql', 'utf-8')
 const apolloServer = new ApolloServer({typeDefs, resolvers,});
 await apolloServer.start();
 
