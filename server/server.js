@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import { handleLogin } from "./authentication.js";
 import knex from "./lib/db.js";
-import { readFile } from "fs";
+import { readFile } from "node:fs/promises";
 import { resolvers } from "./resolvers.js";
 
 
@@ -27,5 +27,6 @@ await apolloServer.start();
 app.use('/graphql', cors(), express.json(), apolloExpressMiddleware(apolloServer));
 
 app.listen({port:PORT}, ()=>{
-    console.log(`Express server is running on port http://localhost:${PORT}`)
+    console.log(`Express server is running on port http://localhost:${PORT}`);
+    console.log(`Apollo graphql server is running on port http://localhost:${PORT}/graphql`);
 })

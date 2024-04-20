@@ -1,5 +1,10 @@
+import { getJobs } from "./controllers/jobs";
+
 export const resolvers = {
     Query: {
-        greeting: ()=>{"Hello from Apollo"}
+        jobs: async () => {
+            const jobs = await getJobs();
+            return jobs;
+        }
     }
 }
