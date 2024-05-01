@@ -1,4 +1,4 @@
-import { getJobs } from "./controllers/jobs";
+import { getJobs } from "./controllers/jobs.js";
 
 export const resolvers = {
     Query: {
@@ -6,5 +6,11 @@ export const resolvers = {
             const jobs = await getJobs();
             return jobs;
         }
+    },
+
+    Job: {
+        date: (root) =>{
+            return root.createdAt.slice(0,10);
+        } 
     }
 }
