@@ -7,4 +7,11 @@ type Job {
     title: String!
     description: String
     date: String
+    company: Company
+}
+
+type Company {
+    id: ID!
+    name: String!
+    description: String
 }

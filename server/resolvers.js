@@ -11,6 +11,10 @@ export const resolvers = {
     Job: {
         date: (root) =>{
             return root.createdAt.slice(0,10);
-        } 
+        } ,
+        company: (root)=>{
+            console.log(root.companyId)
+            return {id: "12", name:"amazon"}
+        }
     }
 }
