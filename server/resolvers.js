@@ -1,4 +1,5 @@
 import { getJobs } from "./controllers/jobs.js";
+import { getCompanyById } from "./controllers/company.js";
 
 export const resolvers = {
     Query: {
@@ -12,9 +13,8 @@ export const resolvers = {
         date: (root) =>{
             return root.createdAt.slice(0,10);
         } ,
-        company: (root)=>{
-            console.log(root.companyId)
-            return {id: "12", name:"amazon"}
+        company: async (root)=>{
+            return await getCompanyById(root.companyId)
         }
     }
 }
