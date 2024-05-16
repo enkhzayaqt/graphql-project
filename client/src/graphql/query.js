@@ -1,5 +1,8 @@
 import { gql, GraphQLClient } from 'graphql-request'
 
+const client = new GraphQLClient('http://localhost:9000/graphql')
+
+// gor home-page
 export async function getJobs(){
     const query = gql`
     query getJobs {
@@ -14,9 +17,27 @@ export async function getJobs(){
         }
     }
 `
+    const {jobs} = await client.request(query);
+    return jobs;
+}
 
-    const client = new GraphQLClient('http://localhost:9000/graphql')
-    const data = await client.request(query);
-    return data.jobs;
+// for job-page
+export async function getJobById(id){
+    const query = gql`
+        query getJob($jobId: ID!){
+            job(id: $jobId ) {
+                id
+                title
+                description
+                date
+                company {
+                    id
+                    name
+                }
+            }
+        }
+    `
+    const {job} = await client.request(query, {jobId:id});
+    return job;
 }
 

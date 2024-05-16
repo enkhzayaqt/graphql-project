@@ -1,10 +1,16 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { jobs } from "../lib/data";
+import { getJobById } from "../graphql/query";
+
 
 export default function JobPage(){
+    
     const {jobId} = useParams();
-    const job = jobs.find((job) => job.id == jobId)
-    console.log(job)
+    const [job, setJob] = useState();
+    useEffect(()=>{
+        getJobById(jobId).then( job => setJob(job))
+    }, [jobId])
+
     return (
         <div>
             <h1 className="title is-3">{job?.title}</h1>
